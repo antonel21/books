@@ -2,7 +2,7 @@ import React, { Component, MouseEventHandler } from 'react'
 
 interface ButtonProps {
   handleClick: MouseEventHandler
-  label: string
+  label: any
   type: 'submit' | 'reset' | 'button' | undefined
   class: string
   disabled?: boolean

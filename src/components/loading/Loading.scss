@@ -2,8 +2,10 @@ $spinner: #393e46;
 $background: white;
 $size: 50px;
 
-html {
+.spinner-container {
   background-color: $background;
+  width: 100vw;
+  height: 83vh;
 }
 
 .spinner {

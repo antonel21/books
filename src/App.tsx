@@ -20,7 +20,7 @@ function App() {
           <Route path="/greatest-books" element={<SummerReads />} />
           <Route path="/single-book/:id" element={<SingleBook />} />
         </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </Router>
     </div>
   )

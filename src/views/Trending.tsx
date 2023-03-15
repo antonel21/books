@@ -12,6 +12,8 @@ import booksApi from '../services/booksApi'
 import { fetchTrendingBooks, setIsLoading } from '../store/actions/bookActions'
 import { Dispatch } from 'redux'
 import Loading from '../components/loading/Loading'
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
+import Pagination from '@mui/material/Pagination'
 
 interface TrendingProps {
   trendingBooks: []
@@ -22,9 +24,8 @@ interface TrendingProps {
 
 class Trending extends Component<TrendingProps> {
   async fetchTrendingBooks() {
-    // const withCover = []
     try {
-      const { data } = await booksApi.get(`/trending/daily.json?limit=30`)
+      const { data } = await booksApi.get(`/trending/daily.json?limit=25`)
       this.props.fetchTrendingBooks(data.works)
       this.props.setIsLoading(false)
     } catch (error) {
@@ -44,8 +45,9 @@ class Trending extends Component<TrendingProps> {
       <>
         <Label class="page-desc" labelText="Trending Books" />
         <div className="trending-container">
-          {this.props.trendingBooks.map((book: any) => (
+          {this.props.trendingBooks.map((book: any, index: number) => (
             <Card
+              key={index}
               class="card-container"
               children={
                 <>
@@ -53,23 +55,40 @@ class Trending extends Component<TrendingProps> {
                     className="fav-icon"
                     onClick={() => {}}
                   />
-                  <Thumbnail
-                    class="fav-img"
-                    alt=""
-                    src={`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`}
-                  />
+                  {book.cover_i ? (
+                    <Thumbnail
+                      class="fav-img"
+                      alt=""
+                      src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
+                    />
+                  ) : (
+                    <Thumbnail
+                      class="fav-img"
+                      alt=""
+                      src="https://www.press.uillinois.edu/books/images/no_cover.jpg"
+                    />
+                  )}
+
                   <Description
                     class="desc-card"
                     children={
                       <>
-                        <Caption class="desc-title" title="" />
-                        <Caption class="desc-author" title="" />
+                        <Caption class="desc-title" title={book.title} />
+                        <Caption
+                          class="desc-author"
+                          title={`by: ${book.author_name}`}
+                        />
                         <Caption class="desc-price" title="" />
                         <Button
                           class="card-btn"
                           handleClick={() => {}}
                           type="button"
-                          label="Add To Cart"
+                          label={
+                            <>
+                              Add To Cart{' '}
+                              <ShoppingCartOutlinedIcon className="cart-icon" />
+                            </>
+                          }
                         />
                       </>
                     }
@@ -79,6 +98,7 @@ class Trending extends Component<TrendingProps> {
             />
           ))}
         </div>
+        <Pagination className="pagination" count={10} color="primary" />
       </>
     )
   }
