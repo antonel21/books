@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 
 export class Logo extends Component {
   render() {
     return (
-      <img
-        style={{ width: '70px', height: '70px', padding: '10px' }}
-        src="https://cdn-icons-png.flaticon.com/512/5320/5320512.png"
-        alt="books"
-      />
-    );
+      <NavLink to="/">
+        <img
+          style={{ width: '70px', height: '70px', padding: '10px 0px' }}
+          src="https://www.transparentpng.com/thumb/books/blue-book-png-icon--an1pZY.png"
+          alt="books"
+        />
+      </NavLink>
+    )
   }
 }
 
-export default Logo;
+export default Logo

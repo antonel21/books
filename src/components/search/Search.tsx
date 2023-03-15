@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
-import SearchIcon from '@mui/icons-material/Search';
-import InputBase from '@mui/material/InputBase';
-import { styled, alpha } from '@mui/material/styles';
+import React, { Component } from 'react'
+import SearchIcon from '@mui/icons-material/Search'
+import InputBase from '@mui/material/InputBase'
+import { styled, alpha } from '@mui/material/styles'
 
 export class Search extends Component {
   render() {
     return (
-      <SearchInput>
+      <SearchInput
+        style={{
+          backgroundColor: 'white',
+          color: 'black',
+          border: '1px black solid',
+        }}
+      >
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
@@ -15,11 +21,11 @@ export class Search extends Component {
           inputProps={{ 'aria-label': 'search' }}
         />
       </SearchInput>
-    );
+    )
   }
 }
 
-export default Search;
+export default Search
 
 const SearchInput = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -35,7 +41,7 @@ const SearchInput = styled('div')(({ theme }) => ({
     marginLeft: theme.spacing(3),
     width: 'auto',
   },
-}));
+}))
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -45,7 +51,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-}));
+}))
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
@@ -58,4 +64,4 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       width: '20ch',
     },
   },
-}));
+}))
