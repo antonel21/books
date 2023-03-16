@@ -2,9 +2,19 @@ import React, { Component } from 'react'
 import SearchIcon from '@mui/icons-material/Search'
 import InputBase from '@mui/material/InputBase'
 import { styled, alpha } from '@mui/material/styles'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
+import { setSearchValue } from '../../store/actions/bookActions'
 
-export class Search extends Component {
+interface SearchProps {
+  setSearchValue: any
+  search: string
+}
+
+export class Search extends Component<SearchProps> {
   render() {
+    console.log(this.props.search)
+
     return (
       <SearchInput
         style={{
@@ -17,6 +27,7 @@ export class Search extends Component {
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
+          onChange={this.props.setSearchValue}
           placeholder="Search…"
           inputProps={{ 'aria-label': 'search' }}
         />
@@ -25,7 +36,20 @@ export class Search extends Component {
   }
 }
 
-export default Search
+const mapStateToProps = (state: any) => {
+  return {
+    search: state.home.search,
+  }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    setSearchValue: (event: any) =>
+      dispatch(setSearchValue(event.target.value)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search)
 
 const SearchInput = styled('div')(({ theme }) => ({
   position: 'relative',

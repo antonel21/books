@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-import Button from '../components/button/Button'
-import Caption from '../components/caption/Caption'
-import Card from '../components/card/Card'
-import Thumbnail from '../components/thumbnail/Thumbnail'
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
-import Description from '../components/description/Description'
+import PrimaryCard from '../components/cards/PrimaryCard'
 import './Trending.scss'
 import Label from '../components/label/Label'
 import { connect } from 'react-redux'
 import booksApi from '../services/booksApi'
-import { fetchTrendingBooks, setIsLoading } from '../store/actions/bookActions'
+import {
+  fetchTrendingBooks,
+  setIsLoading,
+  setPageNumber,
+} from '../store/actions/bookActions'
 import { Dispatch } from 'redux'
 import Loading from '../components/loading/Loading'
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import Pagination from '@mui/material/Pagination'
 
 interface TrendingProps {
@@ -20,13 +18,25 @@ interface TrendingProps {
   isLoading: boolean
   fetchTrendingBooks: any
   setIsLoading: any
+  pageNumber: number
+  setPageNumber: any
+  search: string
 }
 
 class Trending extends Component<TrendingProps> {
   async fetchTrendingBooks() {
     try {
-      const { data } = await booksApi.get(`/trending/daily.json?limit=25`)
-      this.props.fetchTrendingBooks(data.works)
+      const { data } = await booksApi.get(
+        `/trending/daily.json?page=${this.props.pageNumber}&limit=20`,
+      )
+      const newData = await booksApi.get(
+        `/search.json?q=${this.props.search}&limit=20`,
+      )
+      if (this.props.search.length < 3) {
+        this.props.fetchTrendingBooks(data.works)
+      } else {
+        this.props.fetchTrendingBooks(newData.data.docs)
+      }
       this.props.setIsLoading(false)
     } catch (error) {
       console.log(error)
@@ -36,69 +46,43 @@ class Trending extends Component<TrendingProps> {
   componentDidMount(): void {
     this.fetchTrendingBooks()
   }
-  render() {
-    console.log(this.props.trendingBooks)
 
-    return this.props.isLoading ? (
-      <Loading />
-    ) : (
+  componentDidUpdate(
+    prevProps: Readonly<TrendingProps>,
+    prevState: Readonly<{}>,
+    snapshot?: any,
+  ): void {
+    if (
+      prevProps.search !== this.props.search &&
+      (this.props.search.length > 3 || this.props.search.length === 0)
+    ) {
+      this.props.setIsLoading(true)
+      this.fetchTrendingBooks()
+    }
+    if (prevProps.pageNumber !== this.props.pageNumber) {
+      this.props.setIsLoading(true)
+      this.fetchTrendingBooks()
+    }
+  }
+  render() {
+    return (
       <>
         <Label class="page-desc" labelText="Trending Books" />
-        <div className="trending-container">
-          {this.props.trendingBooks.map((book: any, index: number) => (
-            <Card
-              key={index}
-              class="card-container"
-              children={
-                <>
-                  <FavoriteBorderOutlinedIcon
-                    className="fav-icon"
-                    onClick={() => {}}
-                  />
-                  {book.cover_i ? (
-                    <Thumbnail
-                      class="fav-img"
-                      alt=""
-                      src={`https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`}
-                    />
-                  ) : (
-                    <Thumbnail
-                      class="fav-img"
-                      alt=""
-                      src="https://www.press.uillinois.edu/books/images/no_cover.jpg"
-                    />
-                  )}
-
-                  <Description
-                    class="desc-card"
-                    children={
-                      <>
-                        <Caption class="desc-title" title={book.title} />
-                        <Caption
-                          class="desc-author"
-                          title={`by: ${book.author_name}`}
-                        />
-                        <Caption class="desc-price" title="" />
-                        <Button
-                          class="card-btn"
-                          handleClick={() => {}}
-                          type="button"
-                          label={
-                            <>
-                              Add To Cart{' '}
-                              <ShoppingCartOutlinedIcon className="cart-icon" />
-                            </>
-                          }
-                        />
-                      </>
-                    }
-                  />
-                </>
-              }
-            />
-          ))}
-        </div>
-        <Pagination className="pagination" count={10} color="primary" />
+        {this.props.isLoading ? (
+          <Loading />
+        ) : (
+          <div className="trending-container">
+            {this.props.trendingBooks.map((book: any, index: number) => (
+              <PrimaryCard book={book} key={index} class="card-container" />
+            ))}
+          </div>
+        )}
+        <Pagination
+          onChange={(e, page) => this.props.setPageNumber(page)}
+          className="pagination"
+          count={10}
+          color="primary"
+        />
       </>
     )
   }
@@ -107,13 +91,17 @@ const mapStateToProps = (state: any) => {
   return {
     isLoading: state.home.isLoading,
     trendingBooks: state.home.trendingBooks,
+    pageNumber: state.home.pageNumber,
+    search: state.home.search,
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     setIsLoading: (payload: boolean) => dispatch(setIsLoading(payload)),
-    fetchTrendingBooks: (payload: any) => dispatch(fetchTrendingBooks(payload)),
+    fetchTrendingBooks: (payload: any[]) =>
+      dispatch(fetchTrendingBooks(payload)),
+    setPageNumber: (pageNumber: number) => dispatch(setPageNumber(pageNumber)),
   }
 }
 

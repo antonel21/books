@@ -1,10 +1,10 @@
 import React, { Component, MouseEventHandler } from 'react'
 
 interface ButtonProps {
-  handleClick: MouseEventHandler
-  label: any
-  type: 'submit' | 'reset' | 'button' | undefined
-  class: string
+  handleClick?: MouseEventHandler
+  label?: any
+  type?: 'submit' | 'reset' | 'button' | undefined
+  class?: string
   disabled?: boolean
   visibility?: 'visible' | 'hidden' | 'collapse'
 }

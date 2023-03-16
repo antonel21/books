@@ -7,6 +7,7 @@ import RandomBook from './views/RandomBook'
 import GreatestBooks from './views/GreatestBooks'
 import SummerReads from './views/SummerReads'
 import SingleBook from './views/SingleBook'
+import SearchResults from './views/SearchResults'
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Trending />} />
           <Route path="/random" element={<RandomBook />} />
-          <Route path="/summer-reads" element={<GreatestBooks />} />
+          <Route path="/summer-reads" element={<SearchResults />} />
           <Route path="/greatest-books" element={<SummerReads />} />
           <Route path="/single-book/:id" element={<SingleBook />} />
         </Routes>
