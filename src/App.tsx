@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import NavBar from './components/nav-bar/NavBar'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Footer from './components/footer/Footer'
@@ -8,23 +8,75 @@ import GreatestBooks from './views/GreatestBooks'
 import SummerReads from './views/SummerReads'
 import SingleBook from './views/SingleBook'
 import SearchResults from './views/SearchResults'
+import { connect } from 'react-redux'
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Trending />} />
-          <Route path="/random" element={<RandomBook />} />
-          <Route path="/summer-reads" element={<SearchResults />} />
-          <Route path="/greatest-books" element={<SummerReads />} />
-          <Route path="/single-book/:id" element={<SingleBook />} />
-        </Routes>
-        <Footer />
-      </Router>
-    </div>
-  )
+interface AppProps {
+  search: string
 }
 
-export default App
+class App extends Component<AppProps> {
+  render() {
+    return (
+      <div className="App">
+        <Router>
+          <NavBar />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                this.props.search.length > 3 ? <SearchResults /> : <Trending />
+              }
+            />
+            <Route
+              path="/random"
+              element={
+                this.props.search.length > 3 ? (
+                  <SearchResults />
+                ) : (
+                  <RandomBook />
+                )
+              }
+            />
+            <Route
+              path="/summer-reads"
+              element={
+                this.props.search.length > 3 ? (
+                  <SearchResults />
+                ) : (
+                  <GreatestBooks />
+                )
+              }
+            />
+            <Route
+              path="/greatest-books"
+              element={
+                this.props.search.length > 3 ? (
+                  <SearchResults />
+                ) : (
+                  <SummerReads />
+                )
+              }
+            />
+            <Route
+              path="/single-book/:id"
+              element={
+                this.props.search.length > 3 ? (
+                  <SearchResults />
+                ) : (
+                  <SingleBook />
+                )
+              }
+            />
+          </Routes>
+          <Footer />
+        </Router>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state: any) => {
+  return { search: state.home.search }
+}
+
+export default connect(mapStateToProps)(App)

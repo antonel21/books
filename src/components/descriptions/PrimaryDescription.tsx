@@ -24,7 +24,7 @@ export class PrimaryDescription extends Component<PrimaryDescriptionProps> {
           class="card-btn"
           handleClick={() => {}}
           type="button"
-          label={<>Add To Cart: {<ShoppingCartOutlinedIcon />}</>}
+          label={<>Add To Cart {<ShoppingCartOutlinedIcon />}</>}
         />
       </div>
     )
