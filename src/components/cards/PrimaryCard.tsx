@@ -19,13 +19,13 @@ export class PrimaryCard extends Component<PrimaryCardProps> {
           <Thumbnail
             class="fav-img"
             alt=""
-            src={`https://covers.openlibrary.org/b/id/${this.props.book.cover_i}-M.jpg`}
+            src={`https://covers.openlibrary.org/b/id/${this.props.book.cover_i}-L.jpg`}
           />
         ) : (
           <Thumbnail
             class="fav-img"
             alt=""
-            src="https://www.press.uillinois.edu/books/images/no_cover.jpg"
+            src="https://www.hachette.co.nz/graphics/CoverNotAvailable.jpg"
           />
         )}
         <PrimaryDescription book={this.props.book} class="desc-card" />

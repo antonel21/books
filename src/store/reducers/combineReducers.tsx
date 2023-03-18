@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 
-import home from './bookReducers';
+import { trendigReducer, searchReducer } from './bookReducers'
 
 //adding all reducers in a combine reducer
 
-export default combineReducers({ home });
+export default combineReducers({ trendigReducer, searchReducer })

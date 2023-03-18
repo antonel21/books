@@ -14,10 +14,13 @@ export class PrimaryDescription extends Component<PrimaryDescriptionProps> {
   render() {
     return (
       <div className={this.props.class}>
-        <Caption class="desc-title" title={this.props.book.title} />
+        <Caption
+          class="desc-title"
+          title={this.props.book.title.slice(0, 26)}
+        />
         <Caption
           class="desc-author"
-          title={`by: ${this.props.book.author_name}`}
+          title={`by: ${this.props.book.author_name[0]}`}
         />
         <Caption class="desc-price" title="Price: $9.99" />
         <Button

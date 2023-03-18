@@ -2,7 +2,7 @@
   position: relative;
   width: 17%;
   height: 55vh;
-  background-color: rgb(234, 222, 222);
+  background-color: rgb(246, 241, 241);
   margin: 1.5%;
   padding: 10px 20px;
   border-radius: 5px;
@@ -74,8 +74,15 @@
   color: white;
 }
 
+// .pagination {
+//   display: flex;
+//   justify-content: flex-end;
+//   padding: 0px 84px 50px;
+// }
+
 .pagination {
   display: flex;
-  justify-content: flex-end;
-  padding: 0px 84px 50px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
 }

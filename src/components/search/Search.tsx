@@ -38,7 +38,7 @@ export class Search extends Component<SearchProps> {
 
 const mapStateToProps = (state: any) => {
   return {
-    search: state.home.search,
+    search: state.trendigReducer.search,
   }
 }
 

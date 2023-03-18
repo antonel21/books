@@ -25,12 +25,12 @@ class NavBar extends Component {
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <IconButton size="large" color="inherit">
-                <Badge badgeContent={14} color="info">
+                <Badge badgeContent={3} color="info">
                   <ShoppingCartOutlinedIcon style={{ color: 'black' }} />
                 </Badge>
               </IconButton>
               <IconButton size="large" color="inherit">
-                <Badge badgeContent={17} color="info">
+                <Badge badgeContent={5} color="info">
                   <FavoriteBorderOutlinedIcon style={{ color: 'black' }} />
                 </Badge>
               </IconButton>

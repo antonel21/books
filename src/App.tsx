@@ -24,13 +24,13 @@ class App extends Component<AppProps> {
             <Route
               path="/"
               element={
-                this.props.search.length > 3 ? <SearchResults /> : <Trending />
+                this.props.search.length > 2 ? <SearchResults /> : <Trending />
               }
             />
             <Route
               path="/random"
               element={
-                this.props.search.length > 3 ? (
+                this.props.search.length > 2 ? (
                   <SearchResults />
                 ) : (
                   <RandomBook />
@@ -40,7 +40,7 @@ class App extends Component<AppProps> {
             <Route
               path="/summer-reads"
               element={
-                this.props.search.length > 3 ? (
+                this.props.search.length > 2 ? (
                   <SearchResults />
                 ) : (
                   <GreatestBooks />
@@ -50,7 +50,7 @@ class App extends Component<AppProps> {
             <Route
               path="/greatest-books"
               element={
-                this.props.search.length > 3 ? (
+                this.props.search.length > 2 ? (
                   <SearchResults />
                 ) : (
                   <SummerReads />
@@ -76,7 +76,7 @@ class App extends Component<AppProps> {
 }
 
 const mapStateToProps = (state: any) => {
-  return { search: state.home.search }
+  return { search: state.searchReducer.search }
 }
 
 export default connect(mapStateToProps)(App)

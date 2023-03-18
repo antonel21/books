@@ -1,12 +1,11 @@
 .card-btn {
   display: flex;
   align-items: flex-end;
-  gap: 10px;
   background-color: #0288d1;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
+  border-radius: 2px;
+  padding: 15px 30px;
+  font-size: 17px;
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
@@ -18,5 +17,5 @@
 }
 
 .desc-price1 {
-  font-size: 24px;
+  font-size: 30px;
 }

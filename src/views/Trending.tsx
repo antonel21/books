@@ -3,65 +3,35 @@ import PrimaryCard from '../components/cards/PrimaryCard'
 import './Trending.scss'
 import Label from '../components/label/Label'
 import { connect } from 'react-redux'
-import booksApi from '../services/booksApi'
+import service from '../services/Service'
 import {
-  fetchTrendingBooks,
   setIsLoading,
-  setPageNumber,
+  setPageNumberTrending,
+  setTrendingBooks,
 } from '../store/actions/bookActions'
 import { Dispatch } from 'redux'
 import Loading from '../components/loading/Loading'
 import Pagination from '@mui/material/Pagination'
+import { iBook } from '../utils/iBook'
 
 interface TrendingProps {
   trendingBooks: []
   isLoading: boolean
-  fetchTrendingBooks: any
+  setTrendingBooks: any
   setIsLoading: any
-  pageNumber: number
-  setPageNumber: any
-  search: string
+  pageNumberTrending: number
+  setPageNumberTrending: any
 }
 
 class Trending extends Component<TrendingProps> {
-  async fetchTrendingBooks() {
-    try {
-      const { data } = await booksApi.get(
-        `/trending/daily.json?page=${this.props.pageNumber}&limit=20`,
-      )
-      const newData = await booksApi.get(
-        `/search.json?q=${this.props.search}&limit=20`,
-      )
-      if (this.props.search.length < 3) {
-        this.props.fetchTrendingBooks(data.works)
-      } else {
-        this.props.fetchTrendingBooks(newData.data.docs)
-      }
-      this.props.setIsLoading(false)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   componentDidMount(): void {
-    this.fetchTrendingBooks()
+    service.fetchTrendingBooks(this.props)
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<TrendingProps>,
-    prevState: Readonly<{}>,
-    snapshot?: any,
-  ): void {
-    if (
-      prevProps.search !== this.props.search &&
-      (this.props.search.length > 3 || this.props.search.length === 0)
-    ) {
+  componentDidUpdate(prevProps: Readonly<TrendingProps>): void {
+    if (prevProps.pageNumberTrending !== this.props.pageNumberTrending) {
+      service.fetchTrendingBooks(this.props)
       this.props.setIsLoading(true)
-      this.fetchTrendingBooks()
-    }
-    if (prevProps.pageNumber !== this.props.pageNumber) {
-      this.props.setIsLoading(true)
-      this.fetchTrendingBooks()
     }
   }
   render() {
@@ -72,16 +42,17 @@ class Trending extends Component<TrendingProps> {
           <Loading />
         ) : (
           <div className="trending-container">
-            {this.props.trendingBooks.map((book: any, index: number) => (
+            {this.props.trendingBooks.map((book: iBook, index: number) => (
               <PrimaryCard book={book} key={index} class="card-container" />
             ))}
           </div>
         )}
         <Pagination
-          onChange={(e, page) => this.props.setPageNumber(page)}
+          onChange={(e, page) => this.props.setPageNumberTrending(page)}
           className="pagination"
           count={10}
           color="primary"
+          shape="rounded"
         />
       </>
     )
@@ -89,19 +60,18 @@ class Trending extends Component<TrendingProps> {
 }
 const mapStateToProps = (state: any) => {
   return {
-    isLoading: state.home.isLoading,
-    trendingBooks: state.home.trendingBooks,
-    pageNumber: state.home.pageNumber,
-    search: state.home.search,
+    isLoading: state.trendigReducer.isLoading,
+    trendingBooks: state.trendigReducer.trendingBooks,
+    pageNumberTrending: state.trendigReducer.pageNumberTrending,
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     setIsLoading: (payload: boolean) => dispatch(setIsLoading(payload)),
-    fetchTrendingBooks: (payload: any[]) =>
-      dispatch(fetchTrendingBooks(payload)),
-    setPageNumber: (pageNumber: number) => dispatch(setPageNumber(pageNumber)),
+    setTrendingBooks: (payload: any[]) => dispatch(setTrendingBooks(payload)),
+    setPageNumberTrending: (pageNumber: number) =>
+      dispatch(setPageNumberTrending(pageNumber)),
   }
 }
 
