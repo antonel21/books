@@ -1,48 +1,46 @@
-import React, { Component } from 'react'
-import './SearchResults.scss'
-import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
-import SecondaryCard from '../components/cards/SecondaryCard'
-import service from '../services/Service'
+import React, { Component } from 'react';
+import './SearchResults.scss';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import SecondaryCard from '../components/cards/SecondaryCard';
+import service from '../services/Service';
 import {
   setIsLoading,
   setPageNumberSearching,
   setSearchedBooks,
   setSearchValue,
-} from '../store/actions/bookActions'
-import { Pagination } from '@mui/material'
-import Label from '../components/label/Label'
-import Loading from '../components/loading/Loading'
-import { iBook } from '../utils/iBook'
+} from '../store/actions/bookActions';
+import { Pagination } from '@mui/material';
+import Label from '../components/label/Label';
+import Loading from '../components/loading/Loading';
+import { iBook } from '../utils/iBook';
 
 interface SearchResultsProps {
-  pageNumberSearching: number
-  search: string
-  searchedBooks: []
-  isLoading: boolean
-  setSearchedBooks: (books: any[]) => void
-  setIsLoading: (payload: boolean) => void
-  setSearchValue: (search: string) => void
-  setPageNumberSearching: (pageNum: number) => void
+  pageNumberSearching: number;
+  search: string;
+  searchedBooks: [];
+  isLoading: boolean;
+  setSearchedBooks: (books: any[]) => void;
+  setIsLoading: (payload: boolean) => void;
+  setSearchValue: (search: string) => void;
+  setPageNumberSearching: (pageNum: number) => void;
 }
 
 export class SearchResults extends Component<SearchResultsProps> {
   componentDidMount(): void {
-    service.fetchSearchedBooks(this.props)
+    service.fetchSearchedBooks(this.props);
   }
   componentDidUpdate(prevProps: Readonly<SearchResultsProps>): void {
     if (
       this.props.search.length > 2 &&
       prevProps.search.length !== this.props.search.length
     ) {
-      console.log(this.props.search.length)
-
-      this.props.setIsLoading(true)
-      service.fetchSearchedBooks(this.props)
+      this.props.setIsLoading(true);
+      service.fetchSearchedBooks(this.props);
     }
     if (prevProps.pageNumberSearching !== this.props.pageNumberSearching) {
-      this.props.setIsLoading(true)
-      service.fetchSearchedBooks(this.props)
+      this.props.setIsLoading(true);
+      service.fetchSearchedBooks(this.props);
     }
   }
   render() {
@@ -66,7 +64,7 @@ export class SearchResults extends Component<SearchResultsProps> {
           color="primary"
         />
       </>
-    )
+    );
   }
 }
 
@@ -76,8 +74,8 @@ const mapStateToProps = (state: any) => {
     search: state.searchReducer.search,
     searchedBooks: state.searchReducer.searchedBooks,
     pageNumberSearching: state.searchReducer.pageNumberSearching,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
@@ -86,7 +84,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       dispatch(setPageNumberSearching(pageNum)),
     setSearchedBooks: (books: any[]) => dispatch(setSearchedBooks(books)),
     setSearchValue: (search: string) => dispatch(setSearchValue(search)),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResults)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);

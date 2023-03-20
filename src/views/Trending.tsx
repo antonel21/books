@@ -15,12 +15,12 @@ import Pagination from '@mui/material/Pagination'
 import { iBook } from '../utils/iBook'
 
 interface TrendingProps {
+  setTrendingBooks: (payload: any[]) => void
+  setIsLoading: (payload: boolean) => void
+  setPageNumberTrending: (pageNumber: number) => void
+  pageNumberTrending: number
   trendingBooks: []
   isLoading: boolean
-  setTrendingBooks: any
-  setIsLoading: any
-  pageNumberTrending: number
-  setPageNumberTrending: any
 }
 
 class Trending extends Component<TrendingProps> {
