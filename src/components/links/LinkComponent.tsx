@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import './LinkComponent.scss';
 
 interface LinkComponentProps {
   navTo: string;
   text: string;
-  class: string;
+  class?: string;
 }
 
 class LinkComponent extends Component<LinkComponentProps> {
@@ -13,7 +14,9 @@ class LinkComponent extends Component<LinkComponentProps> {
       <li style={{ listStyle: 'none' }}>
         <NavLink
           style={{ textDecoration: 'none' }}
-          className={this.props.class}
+          className={({ isActive, isPending }) =>
+            isPending ? 'pending' : isActive ? 'active' : 'pending'
+          }
           to={this.props.navTo}
         >
           {this.props.text}

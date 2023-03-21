@@ -1,0 +1,19 @@
+a.active {
+  font-size: 17px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgb(0, 0, 0);
+}
+
+a.pending {
+  font-size: 17px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgb(157, 157, 157);
+  transition: 0.3s;
+  &:hover {
+    color: #000000;
+  }
+}

@@ -18,9 +18,9 @@ import { iBook } from '../utils/iBook';
 interface SearchResultsProps {
   pageNumberSearching: number;
   search: string;
-  searchedBooks: [];
+  searchedBooks: iBook[];
   isLoading: boolean;
-  setSearchedBooks: (books: any[]) => void;
+  setSearchedBooks: (books: []) => void;
   setIsLoading: (payload: boolean) => void;
   setSearchValue: (search: string) => void;
   setPageNumberSearching: (pageNum: number) => void;
@@ -28,6 +28,7 @@ interface SearchResultsProps {
 
 export class SearchResults extends Component<SearchResultsProps> {
   componentDidMount(): void {
+    this.props.setIsLoading(true);
     service.fetchSearchedBooks(this.props);
   }
   componentDidUpdate(prevProps: Readonly<SearchResultsProps>): void {
@@ -82,7 +83,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     setIsLoading: (payload: boolean) => dispatch(setIsLoading(payload)),
     setPageNumberSearching: (pageNum: number) =>
       dispatch(setPageNumberSearching(pageNum)),
-    setSearchedBooks: (books: any[]) => dispatch(setSearchedBooks(books)),
+    setSearchedBooks: (books: []) => dispatch(setSearchedBooks(books)),
     setSearchValue: (search: string) => dispatch(setSearchValue(search)),
   };
 };

@@ -1,37 +1,37 @@
-import React, { Component } from 'react'
-import PrimaryCard from '../components/cards/PrimaryCard'
-import './Trending.scss'
-import Label from '../components/label/Label'
-import { connect } from 'react-redux'
-import service from '../services/Service'
+import React, { Component } from 'react';
+import PrimaryCard from '../components/cards/PrimaryCard';
+import './Trending.scss';
+import Label from '../components/label/Label';
+import { connect } from 'react-redux';
+import service from '../services/Service';
 import {
   setIsLoading,
   setPageNumberTrending,
   setTrendingBooks,
-} from '../store/actions/bookActions'
-import { Dispatch } from 'redux'
-import Loading from '../components/loading/Loading'
-import Pagination from '@mui/material/Pagination'
-import { iBook } from '../utils/iBook'
+} from '../store/actions/bookActions';
+import { Dispatch } from 'redux';
+import Loading from '../components/loading/Loading';
+import Pagination from '@mui/material/Pagination';
+import { iBook } from '../utils/iBook';
 
 interface TrendingProps {
-  setTrendingBooks: (payload: any[]) => void
-  setIsLoading: (payload: boolean) => void
-  setPageNumberTrending: (pageNumber: number) => void
-  pageNumberTrending: number
-  trendingBooks: []
-  isLoading: boolean
+  setTrendingBooks: (payload: any[]) => void;
+  setIsLoading: (payload: boolean) => void;
+  setPageNumberTrending: (pageNumber: number) => void;
+  pageNumberTrending: number;
+  trendingBooks: [];
+  isLoading: boolean;
 }
 
 class Trending extends Component<TrendingProps> {
   componentDidMount(): void {
-    service.fetchTrendingBooks(this.props)
+    service.fetchTrendingBooks(this.props);
   }
 
   componentDidUpdate(prevProps: Readonly<TrendingProps>): void {
     if (prevProps.pageNumberTrending !== this.props.pageNumberTrending) {
-      service.fetchTrendingBooks(this.props)
-      this.props.setIsLoading(true)
+      service.fetchTrendingBooks(this.props);
+      this.props.setIsLoading(true);
     }
   }
   render() {
@@ -53,9 +53,10 @@ class Trending extends Component<TrendingProps> {
           count={10}
           color="primary"
           shape="rounded"
+          page={this.props.pageNumberTrending}
         />
       </>
-    )
+    );
   }
 }
 const mapStateToProps = (state: any) => {
@@ -63,8 +64,8 @@ const mapStateToProps = (state: any) => {
     isLoading: state.trendigReducer.isLoading,
     trendingBooks: state.trendigReducer.trendingBooks,
     pageNumberTrending: state.trendigReducer.pageNumberTrending,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
@@ -72,7 +73,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     setTrendingBooks: (payload: any[]) => dispatch(setTrendingBooks(payload)),
     setPageNumberTrending: (pageNumber: number) =>
       dispatch(setPageNumberTrending(pageNumber)),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Trending)
+export default connect(mapStateToProps, mapDispatchToProps)(Trending);

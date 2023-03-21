@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
-import LinkComponent from './LinkComponent'
-import { links } from '../../constants/constants'
-import './NavLink.scss'
+import React, { Component } from 'react';
+import LinkComponent from './LinkComponent';
+import { links } from '../../constants/constants';
 
 interface NavLinksProps {
-  class: string
+  class: string;
 }
 
 class NavLinks extends Component<NavLinksProps> {
@@ -13,17 +12,12 @@ class NavLinks extends Component<NavLinksProps> {
       <ul className={this.props.class}>
         {links.map((link, index) => {
           return (
-            <LinkComponent
-              key={index}
-              navTo={link.url}
-              text={link.text}
-              class="nav-link"
-            />
-          )
+            <LinkComponent key={index} navTo={link.url} text={link.text} />
+          );
         })}
       </ul>
-    )
+    );
   }
 }
 
-export default NavLinks
+export default NavLinks;

@@ -1,12 +1,17 @@
 import Service from './Service';
 import booksApi from './booksApi';
+import { iBook } from '../utils/iBook';
 
 jest.mock('./booksApi');
 
-const mockedAxios = booksApi.get as jest.MockedFunction<typeof booksApi.get>;
+const mockedAxios = booksApi as jest.Mocked<typeof booksApi>;
 
 describe('Testing service...', () => {
-  const data = {
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
+  const data: { works: iBook[] } = {
     works: [
       {
         cover_i: 343434,
@@ -24,25 +29,50 @@ describe('Testing service...', () => {
       },
     ],
   };
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
+
+  const fetchBooks = async () => {
+    try {
+      return await booksApi.get(`/trending/monthly.json?page=1&limit=20`);
+    } catch (e) {
+      return [];
+    }
+  };
 
   describe('Testing fetchTrendingBooks', () => {
-    const props = {
-      pageNumberTrending: 1,
-      setTrendingBooks: jest.fn(),
-      setIsLoading: jest.fn(),
-    };
-    it('should fetch trending books and set the result and isLoading state', async () => {
-      mockedAxios.mockResolvedValueOnce({ data });
+    it('should fetch trending books and test data returned', async () => {
+      mockedAxios.get.mockResolvedValueOnce(data);
+      const result = await fetchBooks();
+      expect(mockedAxios.get).toHaveBeenCalledWith(
+        `/trending/monthly.json?page=1&limit=20`,
+      );
+      expect(mockedAxios.get).toHaveBeenCalledTimes(1);
+      expect(result).toEqual(data);
+    });
+
+    it('should fetch trending books and set the trendingBooks and isLoading state', async () => {
+      const props = {
+        pageNumberTrending: 1,
+        setTrendingBooks: jest.fn(),
+        setIsLoading: jest.fn(),
+      };
+      mockedAxios.get.mockResolvedValueOnce({ data });
       await Service.fetchTrendingBooks(props);
-      expect(mockedAxios).toHaveBeenCalledWith(
+      expect(mockedAxios.get).toHaveBeenCalledWith(
         `/trending/monthly.json?page=${props.pageNumberTrending}&limit=20`,
       );
-      expect(mockedAxios).toHaveBeenCalledTimes(1);
+      expect(mockedAxios.get).toHaveBeenCalledTimes(1);
       expect(props.setTrendingBooks).toHaveBeenCalledWith(data.works);
       expect(props.setIsLoading).toHaveBeenCalledWith(false);
+    });
+  });
+
+  describe('When API call fails', () => {
+    it('should return empty books list', async () => {
+      const message = 'Network Error';
+      mockedAxios.get.mockRejectedValueOnce(new Error(message));
+      const result = await fetchBooks();
+      expect(mockedAxios.get).toHaveBeenCalledTimes(1);
+      expect(result).toEqual([]);
     });
   });
 });
