@@ -11,14 +11,16 @@ import thunk from 'redux-thunk';
 //create the store
 const store = legacy_createStore(
   reducers,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(thunk)),
 );
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root') as HTMLElement,
 );
 
 root.render(
   <Provider store={store}>
     <App />
-  </Provider>
+  </Provider>,
 );
+
+export type RootState = ReturnType<typeof store.getState>;

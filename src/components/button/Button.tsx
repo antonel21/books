@@ -1,12 +1,12 @@
-import React, { Component, MouseEventHandler } from 'react'
+import React, { Component, MouseEventHandler, ReactNode } from 'react';
 
 interface ButtonProps {
-  handleClick?: MouseEventHandler
-  label?: any
-  type?: 'submit' | 'reset' | 'button' | undefined
-  class?: string
-  disabled?: boolean
-  visibility?: 'visible' | 'hidden' | 'collapse'
+  handleClick?: MouseEventHandler;
+  label?: ReactNode;
+  type?: 'submit' | 'reset' | 'button' | undefined;
+  class?: string;
+  disabled?: boolean;
+  visibility?: 'visible' | 'hidden' | 'collapse';
 }
 class Button extends Component<ButtonProps> {
   render() {
@@ -20,8 +20,8 @@ class Button extends Component<ButtonProps> {
       >
         {this.props.label}
       </button>
-    )
+    );
   }
 }
 
-export default Button
+export default Button;

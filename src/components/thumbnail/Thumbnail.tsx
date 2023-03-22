@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 interface ThumbnailProps {
-  src: any;
+  src: string;
   alt: string;
   class: string;
 }
