@@ -3,15 +3,15 @@ $background: #dde1e7;
 $size: 50px;
 
 .spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: $background;
   width: 100vw;
   height: 59.9vh;
 }
 
 .spinner {
-  position: absolute;
-  top: calc(50% - #{$size / 2});
-  left: calc(50% - #{$size / 2});
   width: $size;
   height: $size;
   animation: spinner 1s linear infinite;

@@ -1,8 +1,8 @@
-import React, { Component, MouseEventHandler } from 'react';
+import React, { Component, MouseEventHandler, ReactNode } from 'react';
 
 interface ButtonProps {
   handleClick?: MouseEventHandler;
-  label?: any;
+  label?: ReactNode;
   type?: 'submit' | 'reset' | 'button' | undefined;
   class?: string;
   disabled?: boolean;

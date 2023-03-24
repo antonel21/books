@@ -9,6 +9,7 @@ import SummerReads from './views/SummerReads';
 import SingleBook from './views/SingleBook';
 import SearchResults from './views/SearchResults';
 import { connect } from 'react-redux';
+import { RootState } from '.';
 
 interface AppProps {
   search: string;
@@ -75,7 +76,7 @@ class App extends Component<AppProps> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return { search: state.searchReducer.search };
 };
 

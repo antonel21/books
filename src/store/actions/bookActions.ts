@@ -6,9 +6,10 @@ import {
   SET_SEARCHED_BOOKS,
   SET_PAGE_NUMBER_SEARCHING,
 } from '../../constants/actionTypes';
+import { iBook } from '../../utils/iBook';
 
 //action to save the trending books in state
-export const setTrendingBooks = (books: any[]) => {
+export const setTrendingBooks = (books: iBook[]) => {
   return { type: SET_TRENDING_BOOKS, payload: books };
 };
 
@@ -20,7 +21,7 @@ export const setPageNumberTrending = (pageNumber: number) => {
   return { type: SET_PAGE_NUMBER_TRENDING, payload: pageNumber };
 };
 
-export const setSearchedBooks = (books: any[]) => {
+export const setSearchedBooks = (books: iBook[]) => {
   return { type: SET_SEARCHED_BOOKS, payload: books };
 };
 
