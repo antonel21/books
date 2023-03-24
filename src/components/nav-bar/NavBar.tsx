@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import Badge from '@mui/material/Badge'
-import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined'
-import MoreIcon from '@mui/icons-material/MoreVert'
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
-import Search from '../search/Search'
-import Logo from '../logo/Logo'
-import NavLinks from '../links/NavLinks'
-import './NavBar.scss'
+import React, { Component } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
+import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import Search from '../search/Search';
+import Logo from '../logo/Logo';
+import NavLinks from '../links/NavLinks';
+import './NavBar.scss';
 
 class NavBar extends Component {
   render() {
@@ -53,8 +53,8 @@ class NavBar extends Component {
           </Toolbar>
         </AppBar>
       </Box>
-    )
+    );
   }
 }
 
-export default NavBar
+export default NavBar;

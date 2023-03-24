@@ -1,19 +1,19 @@
-import React, { Component } from 'react'
-import SearchIcon from '@mui/icons-material/Search'
-import InputBase from '@mui/material/InputBase'
-import { styled, alpha } from '@mui/material/styles'
-import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
-import { setSearchValue } from '../../store/actions/bookActions'
+import React, { Component } from 'react';
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from '@mui/material/InputBase';
+import { styled, alpha } from '@mui/material/styles';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { setSearchValue } from '../../store/actions/bookActions';
 
 interface SearchProps {
-  setSearchValue: any
-  search: string
+  setSearchValue: any;
+  search: string;
 }
 
 export class Search extends Component<SearchProps> {
   render() {
-    console.log(this.props.search)
+    console.log(this.props.search);
 
     return (
       <SearchInput
@@ -32,24 +32,24 @@ export class Search extends Component<SearchProps> {
           inputProps={{ 'aria-label': 'search' }}
         />
       </SearchInput>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state: any) => {
   return {
     search: state.trendigReducer.search,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     setSearchValue: (event: any) =>
       dispatch(setSearchValue(event.target.value)),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
 
 const SearchInput = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -65,7 +65,7 @@ const SearchInput = styled('div')(({ theme }) => ({
     marginLeft: theme.spacing(3),
     width: 'auto',
   },
-}))
+}));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -75,7 +75,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-}))
+}));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
@@ -88,4 +88,4 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       width: '20ch',
     },
   },
-}))
+}));

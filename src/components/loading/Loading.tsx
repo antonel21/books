@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import './Loading.scss'
+import React, { Component } from 'react';
+import './Loading.scss';
 
 class Loading extends Component {
   render() {
@@ -11,8 +11,8 @@ class Loading extends Component {
           <span className="spinner-inner-3"></span>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Loading
+export default Loading;

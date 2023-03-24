@@ -1,12 +1,12 @@
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
-import React, { Component } from 'react'
-import { iBook } from '../../utils/iBook'
-import Caption from '../caption/Caption'
-import './Header.scss'
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import React, { Component } from 'react';
+import { iBook } from '../../utils/iBook';
+import Caption from '../caption/Caption';
+import './Header.scss';
 
 interface HeaderProps {
-  class: string
-  book: iBook
+  class: string;
+  book: iBook;
 }
 
 export class Header extends Component<HeaderProps> {
@@ -23,8 +23,8 @@ export class Header extends Component<HeaderProps> {
         />
         <FavoriteBorderOutlinedIcon className="fav-icon1" />
       </div>
-    )
+    );
   }
 }
 
-export default Header
+export default Header;

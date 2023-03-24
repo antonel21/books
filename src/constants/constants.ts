@@ -11,4 +11,4 @@ export const links = [
     url: '/greatest-books',
     text: 'Greatest Books',
   },
-]
+];

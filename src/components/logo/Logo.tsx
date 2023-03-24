@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export class Logo extends Component {
   render() {
@@ -11,8 +11,8 @@ export class Logo extends Component {
           alt="books"
         />
       </NavLink>
-    )
+    );
   }
 }
 
-export default Logo
+export default Logo;

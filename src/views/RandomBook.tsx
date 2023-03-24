@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export class RandomBook extends Component {
   render() {
-    return <div>RandomBook</div>
+    return <div>RandomBook</div>;
   }
 }
 
-export default RandomBook
+export default RandomBook;

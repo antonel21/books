@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import Button from '../button/Button'
-import Caption from '../caption/Caption'
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
-import './CartInteract.scss'
+import React, { Component } from 'react';
+import Button from '../button/Button';
+import Caption from '../caption/Caption';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import './CartInteract.scss';
 
 interface CartInteractProps {
-  class: string
+  class: string;
 }
 
 export class CartInteract extends Component<CartInteractProps> {
@@ -20,8 +20,8 @@ export class CartInteract extends Component<CartInteractProps> {
           label={<>Add To Cart {<ShoppingCartOutlinedIcon />}</>}
         />
       </div>
-    )
+    );
   }
 }
 
-export default CartInteract
+export default CartInteract;

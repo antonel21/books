@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { iBook } from '../../utils/iBook'
-import Caption from '../caption/Caption'
-import './SecondaryDescription.scss'
+import React, { Component } from 'react';
+import { iBook } from '../../utils/iBook';
+import Caption from '../caption/Caption';
+import './SecondaryDescription.scss';
 
 interface SecondaryDescriptionProps {
-  class: string
-  book: iBook
+  class: string;
+  book: iBook;
 }
 
 export class SecondaryDescription extends Component<SecondaryDescriptionProps> {
@@ -22,8 +22,8 @@ export class SecondaryDescription extends Component<SecondaryDescriptionProps> {
           title={`${this.props.book.edition_count} editions`}
         />
       </div>
-    )
+    );
   }
 }
 
-export default SecondaryDescription
+export default SecondaryDescription;

@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import { iBook } from '../../utils/iBook'
-import CartInteract from '../cartInteract/CartInteract'
-import SecondaryDescription from '../descriptions/SecondaryDescription'
-import Thumbnail from '../thumbnail/Thumbnail'
-import './CardDetails.scss'
+import React, { Component } from 'react';
+import { iBook } from '../../utils/iBook';
+import CartInteract from '../cartInteract/CartInteract';
+import SecondaryDescription from '../descriptions/SecondaryDescription';
+import Thumbnail from '../thumbnail/Thumbnail';
+import './CardDetails.scss';
 
 interface CardDetailsProps {
-  class: string
-  book: iBook
+  class: string;
+  book: iBook;
 }
 
 export class CardDetails extends Component<CardDetailsProps> {
@@ -30,8 +30,8 @@ export class CardDetails extends Component<CardDetailsProps> {
         <SecondaryDescription class="description" book={this.props.book} />
         <CartInteract class="card-interact" />
       </div>
-    )
+    );
   }
 }
 
-export default CardDetails
+export default CardDetails;

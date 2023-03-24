@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import Button from '../button/Button'
-import Caption from '../caption/Caption'
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
-import './PrimaryDescription.scss'
-import { iBook } from '../../utils/iBook'
+import React, { Component } from 'react';
+import Button from '../button/Button';
+import Caption from '../caption/Caption';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import './PrimaryDescription.scss';
+import { iBook } from '../../utils/iBook';
 
 interface PrimaryDescriptionProps {
-  class?: string
-  book: iBook
+  class?: string;
+  book: iBook;
 }
 
 export class PrimaryDescription extends Component<PrimaryDescriptionProps> {
@@ -30,8 +30,8 @@ export class PrimaryDescription extends Component<PrimaryDescriptionProps> {
           label={<>Add To Cart {<ShoppingCartOutlinedIcon />}</>}
         />
       </div>
-    )
+    );
   }
 }
 
-export default PrimaryDescription
+export default PrimaryDescription;

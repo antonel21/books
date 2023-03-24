@@ -1,12 +1,12 @@
 export interface TrendingProps {
-  pageNumberTrending: number
-  setTrendingBooks: any
-  setIsLoading: any
+  pageNumberTrending: number;
+  setTrendingBooks: any;
+  setIsLoading: any;
 }
 
 export interface SearchProps {
-  pageNumberSearching: number
-  search: string
-  setIsLoading: any
-  setSearchedBooks: any
+  pageNumberSearching: number;
+  search: string;
+  setIsLoading: any;
+  setSearchedBooks: any;
 }

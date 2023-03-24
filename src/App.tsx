@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import NavBar from './components/nav-bar/NavBar'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Footer from './components/footer/Footer'
-import Trending from './views/Trending'
-import RandomBook from './views/RandomBook'
-import GreatestBooks from './views/GreatestBooks'
-import SummerReads from './views/SummerReads'
-import SingleBook from './views/SingleBook'
-import SearchResults from './views/SearchResults'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import NavBar from './components/nav-bar/NavBar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Footer from './components/footer/Footer';
+import Trending from './views/Trending';
+import RandomBook from './views/RandomBook';
+import GreatestBooks from './views/GreatestBooks';
+import SummerReads from './views/SummerReads';
+import SingleBook from './views/SingleBook';
+import SearchResults from './views/SearchResults';
+import { connect } from 'react-redux';
 
 interface AppProps {
-  search: string
+  search: string;
 }
 
 class App extends Component<AppProps> {
@@ -71,12 +71,12 @@ class App extends Component<AppProps> {
           <Footer />
         </Router>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state: any) => {
-  return { search: state.searchReducer.search }
-}
+  return { search: state.searchReducer.search };
+};
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);
