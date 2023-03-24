@@ -13,13 +13,14 @@ import { Dispatch } from 'redux';
 import Loading from '../components/loading/Loading';
 import Pagination from '@mui/material/Pagination';
 import { iBook } from '../utils/iBook';
+import { RootState } from '..';
 
 interface TrendingProps {
-  setTrendingBooks: (payload: any[]) => void;
+  setTrendingBooks: (payload: iBook[]) => void;
   setIsLoading: (payload: boolean) => void;
   setPageNumberTrending: (pageNumber: number) => void;
   pageNumberTrending: number;
-  trendingBooks: [];
+  trendingBooks: iBook[];
   isLoading: boolean;
 }
 
@@ -59,7 +60,7 @@ class Trending extends Component<TrendingProps> {
     );
   }
 }
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return {
     isLoading: state.trendigReducer.isLoading,
     trendingBooks: state.trendigReducer.trendingBooks,
@@ -70,7 +71,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     setIsLoading: (payload: boolean) => dispatch(setIsLoading(payload)),
-    setTrendingBooks: (payload: any[]) => dispatch(setTrendingBooks(payload)),
+    setTrendingBooks: (payload: iBook[]) => dispatch(setTrendingBooks(payload)),
     setPageNumberTrending: (pageNumber: number) =>
       dispatch(setPageNumberTrending(pageNumber)),
   };

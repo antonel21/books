@@ -1,3 +1,5 @@
+import { iBook } from '../utils/iBook';
+
 export interface TrendingProps {
   pageNumberTrending: number;
   setTrendingBooks: any;

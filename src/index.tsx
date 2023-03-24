@@ -22,3 +22,5 @@ root.render(
     <App />
   </Provider>,
 );
+
+export type RootState = ReturnType<typeof store.getState>;

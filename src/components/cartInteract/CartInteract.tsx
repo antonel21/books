@@ -14,7 +14,7 @@ export class CartInteract extends Component<CartInteractProps> {
       <div className={this.props.class}>
         <Caption class="desc-price1" title="9.99 $" />
         <Button
-          class="card-btn"
+          class="card-btn1"
           handleClick={() => {}}
           type="button"
           label={<>Add To Cart {<ShoppingCartOutlinedIcon />}</>}

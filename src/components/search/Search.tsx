@@ -36,7 +36,7 @@ export class Search extends Component<SearchProps> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return {
     search: state.trendigReducer.search,
   };
@@ -44,7 +44,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    setSearchValue: (event: any) =>
+    setSearchValue: (event: React.ChangeEvent<HTMLTextAreaElement>) =>
       dispatch(setSearchValue(event.target.value)),
   };
 };

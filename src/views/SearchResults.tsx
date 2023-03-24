@@ -14,13 +14,14 @@ import { Pagination } from '@mui/material';
 import Label from '../components/label/Label';
 import Loading from '../components/loading/Loading';
 import { iBook } from '../utils/iBook';
+import { RootState } from '..';
 
 interface SearchResultsProps {
   pageNumberSearching: number;
   search: string;
   searchedBooks: iBook[];
   isLoading: boolean;
-  setSearchedBooks: (books: []) => void;
+  setSearchedBooks: (books: iBook[]) => void;
   setIsLoading: (payload: boolean) => void;
   setSearchValue: (search: string) => void;
   setPageNumberSearching: (pageNum: number) => void;
@@ -69,7 +70,7 @@ export class SearchResults extends Component<SearchResultsProps> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return {
     isLoading: state.trendigReducer.isLoading,
     search: state.searchReducer.search,
@@ -83,7 +84,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     setIsLoading: (payload: boolean) => dispatch(setIsLoading(payload)),
     setPageNumberSearching: (pageNum: number) =>
       dispatch(setPageNumberSearching(pageNum)),
-    setSearchedBooks: (books: []) => dispatch(setSearchedBooks(books)),
+    setSearchedBooks: (books: iBook[]) => dispatch(setSearchedBooks(books)),
     setSearchValue: (search: string) => dispatch(setSearchValue(search)),
   };
 };
