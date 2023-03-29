@@ -8,7 +8,7 @@ import { setSearchValue } from '../../store/actions/bookActions';
 import { RootState } from '../..';
 
 interface SearchProps {
-  setSearchValue: any;
+  setSearchValue: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   search: string;
 }
 
