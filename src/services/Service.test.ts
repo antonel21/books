@@ -34,6 +34,7 @@ const fetchBooks = async (url: string) => {
         title: item.title,
         first_publish_year: item.first_publish_year,
         edition_count: item.edition_count - 10,
+        ratings_average: item.ratings_average,
       });
     });
     return { works };

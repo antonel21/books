@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { iBook } from '../../utils/iBook';
-import CartInteract from '../cartInteract/CartInteract';
-import SecondaryDescription from '../descriptions/SecondaryDescription';
-import Thumbnail from '../thumbnail/Thumbnail';
+import { iBook } from '../../../utils/iBook';
+import CartInteract from '../../cartInteract/CartInteract';
+import SecondaryDescription from '../../descriptions/SecondaryDescription';
+import Thumbnail from '../../thumbnail/Thumbnail';
 import './CardDetails.scss';
 
 interface CardDetailsProps {

@@ -16,6 +16,7 @@ class Service {
           edition_count: book.edition_count,
           first_publish_year: book.first_publish_year,
           title: book.title,
+          ratings_average: book.ratings_average,
         });
       });
       props.setTrendingBooks(books);
@@ -38,6 +39,7 @@ class Service {
           edition_count: book.edition_count,
           first_publish_year: book.first_publish_year,
           title: book.title,
+          ratings_average: book.ratings_average,
         });
       });
       props.setSearchedBooks(books);

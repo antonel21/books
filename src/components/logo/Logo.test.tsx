@@ -1,27 +1,27 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Logo from './Logo';
-import '@testing-library/jest-dom';
+import Enzyme, { shallow } from 'enzyme';
+import { Logo } from './Logo';
+import Adapter from '@cfaester/enzyme-adapter-react-18';
 
-describe('Logo component', () => {
-  it('should render a NavLink with the correct props and image', () => {
-    render(
-      <Router>
-        <Logo />
-      </Router>,
-    );
+Enzyme.configure({ adapter: new Adapter() });
 
-    const navLink = screen.getByRole('link');
-    const img = screen.getByAltText('books');
+describe('Logo', () => {
+  it('renders without crashing', () => {
+    shallow(<Logo />);
+  });
 
-    expect(navLink).toBeInTheDocument();
-    expect(img).toBeInTheDocument();
-    expect(img).toHaveAttribute(
-      'src',
+  it('renders an image with the correct source and alt text', () => {
+    const wrapper = shallow(<Logo />);
+    const img = wrapper.find('img');
+    expect(img.prop('src')).toEqual(
       'https://www.transparentpng.com/thumb/books/blue-book-png-icon--an1pZY.png',
     );
-    expect(img).toHaveAttribute('alt', 'books');
-    expect(img).toHaveStyle('width: 70px; height: 70px; padding: 10px 0px;');
+    expect(img.prop('alt')).toEqual('books');
+  });
+
+  it('renders a NavLink with the correct to prop', () => {
+    const wrapper = shallow(<Logo />);
+    const navLink = wrapper.find('NavLink');
+    expect(navLink.prop('to')).toEqual('/');
   });
 });

@@ -1,16 +1,19 @@
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
-import Footer from './Footer';
-import '@testing-library/jest-dom';
+import Enzyme, { shallow } from 'enzyme';
+import { Footer } from './Footer';
+import Adapter from '@cfaester/enzyme-adapter-react-18';
 
-afterEach(cleanup);
+Enzyme.configure({ adapter: new Adapter() });
 
-describe('Footer component', () => {
-  test('renders footer text', () => {
-    render(<Footer />);
-    const footer = screen.getByText(/© 2023/);
-    expect(footer).toBeInTheDocument();
-    expect(footer).toHaveTextContent(
+describe('Footer', () => {
+  it('renders without crashing', () => {
+    shallow(<Footer />);
+  });
+
+  it('renders a footer with the correct class and text', () => {
+    const wrapper = shallow(<Footer />);
+    expect(wrapper.find('footer').hasClass('footer')).toEqual(true);
+    expect(wrapper.find('p').text()).toEqual(
       '© 2023 Copyright Antonel Alimucaj | All Rights Reseved',
     );
   });

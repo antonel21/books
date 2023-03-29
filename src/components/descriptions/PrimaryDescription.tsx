@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from '../button/Button';
+import Button from '../buttons/Button';
 import Caption from '../caption/Caption';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import './PrimaryDescription.scss';

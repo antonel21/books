@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { iBook } from '../../utils/iBook';
 import Caption from '../caption/Caption';
 import './SecondaryDescription.scss';
+import Rating from '@mui/material/Rating/Rating';
 
 interface SecondaryDescriptionProps {
   class: string;
@@ -16,6 +17,11 @@ export class SecondaryDescription extends Component<SecondaryDescriptionProps> {
         <Caption
           class="desc2"
           title={`First published in ${this.props.book.first_publish_year}`}
+        />
+        <Rating
+          name="read-only"
+          value={Math.floor(this.props.book.ratings_average) || 3}
+          readOnly
         />
         <Caption
           class="desc3"

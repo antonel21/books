@@ -5,6 +5,7 @@ import { styled, alpha } from '@mui/material/styles';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { setSearchValue } from '../../store/actions/bookActions';
+import { RootState } from '../..';
 
 interface SearchProps {
   setSearchValue: any;

@@ -6,9 +6,10 @@ import Trending from './views/Trending';
 import RandomBook from './views/RandomBook';
 import GreatestBooks from './views/GreatestBooks';
 import SummerReads from './views/SummerReads';
-import SingleBook from './views/SingleBook';
+import SingleBook from './views/ProductDetail';
 import SearchResults from './views/SearchResults';
 import { connect } from 'react-redux';
+import ProductDetail from './views/ProductDetail';
 
 interface AppProps {
   search: string;
@@ -53,7 +54,7 @@ class App extends Component<AppProps> {
                 this.props.search.length > 2 ? (
                   <SearchResults />
                 ) : (
-                  <SummerReads />
+                  <ProductDetail />
                 )
               }
             />
