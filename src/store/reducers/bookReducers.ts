@@ -5,6 +5,7 @@ import {
   SET_SEARCH_VALUE,
   SET_PAGE_NUMBER_TRENDING,
   SET_PAGE_NUMBER_SEARCHING,
+  SET_RANDOM_BOOK
 } from '../../constants/actionTypes';
 import { AnyAction } from 'redux';
 
@@ -15,6 +16,7 @@ const initialState = {
   pageNumberTrending: 1,
   searchedBooks: [],
   pageNumberSearching: 1,
+  randomBook: {}
 };
 
 const trendigReducer = (state = initialState, action: AnyAction) => {
@@ -44,6 +46,16 @@ const searchReducer = (state = initialState, action: AnyAction) => {
     default:
       return state;
   }
+}
+  const singleBook = (state = initialState, action: AnyAction) => {
+    switch (action.type) {
+      case SET_RANDOM_BOOK:
+        return { ...state, randomBook: action.payload };
+      default:
+        return state;
+    }
 };
 
-export { trendigReducer, searchReducer };
+
+
+export { trendigReducer, searchReducer , singleBook};

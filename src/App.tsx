@@ -6,7 +6,6 @@ import Trending from './views/Trending';
 import RandomBook from './views/RandomBook';
 import GreatestBooks from './views/GreatestBooks';
 import SummerReads from './views/SummerReads';
-import SingleBook from './views/ProductDetail';
 import SearchResults from './views/SearchResults';
 import { connect } from 'react-redux';
 import { RootState } from '.';
@@ -65,7 +64,7 @@ class App extends Component<AppProps> {
                 this.props.search.length > 3 ? (
                   <SearchResults />
                 ) : (
-                  <SingleBook />
+                  <SummerReads />
                 )
               }
             />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { iBook } from '../../utils/iBook';
 import CardDetails from '../details/cardDetails/CardDetails';
-import Header from '../header/Header';
+import Header from '../headers/Header';
 import './SecondaryCard.scss';
 
 interface SecondaryCardProps {

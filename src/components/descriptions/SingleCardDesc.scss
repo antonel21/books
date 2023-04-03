@@ -1,0 +1,19 @@
+.single-header, .book-details,.two-buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.single-header{
+    height: 10%;
+}
+
+.book-details{
+    height: 25%;
+
+}
+
+.two-buttons{
+    height: 20%;
+    width: 100%;
+}

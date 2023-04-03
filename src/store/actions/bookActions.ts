@@ -5,6 +5,7 @@ import {
   SET_PAGE_NUMBER_TRENDING,
   SET_SEARCHED_BOOKS,
   SET_PAGE_NUMBER_SEARCHING,
+  SET_RANDOM_BOOK
 } from '../../constants/actionTypes';
 import { iBook } from '../../utils/iBook';
 
@@ -31,4 +32,9 @@ export const setPageNumberSearching = (pageNumber: number) => {
 
 export const setSearchValue = (search: string) => {
   return { type: SET_SEARCH_VALUE, payload: search };
+
+};
+
+export const setRandomBook = (book: iBook) => {
+  return { type: SET_RANDOM_BOOK, payload: book };
 };

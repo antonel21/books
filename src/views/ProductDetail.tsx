@@ -9,6 +9,7 @@ const book = {
   first_publish_year: 1999,
   edition_count: 121,
   ratings_average: 4,
+  key: 'jkhkhajf'
 };
 
 class ProductDetail extends React.Component {

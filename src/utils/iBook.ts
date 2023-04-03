@@ -5,4 +5,5 @@ export interface iBook {
   first_publish_year: number;
   edition_count: number;
   ratings_average: number;
+  key: string
 }

@@ -25,6 +25,7 @@ interface TrendingProps {
 }
 
 class Trending extends Component<TrendingProps> {
+
   componentDidMount(): void {
     service.fetchTrendingBooks(this.props);
   }

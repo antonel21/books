@@ -1,9 +1,11 @@
 import { Rating } from '@mui/material';
 import React, { Component } from 'react';
 import Caption from '../../caption/Caption';
+import { iBook } from '../../../utils/iBook';
 
 interface BookDetailsProps {
   class: string;
+  book: iBook;
 }
 
 export class BookDetails extends Component<BookDetailsProps> {
@@ -11,8 +13,8 @@ export class BookDetails extends Component<BookDetailsProps> {
     return (
       <div className={this.props.class}>
         <Rating />
-        <Caption class="book-genere" title="" />
-        <Caption class="book-desc" title="" />
+        <Caption class="book-genere" title="lodjsflkadshjfasd" />
+        <Caption class="book-desc" title="sadadsadfafsfasfsaf" />
       </div>
     );
   }

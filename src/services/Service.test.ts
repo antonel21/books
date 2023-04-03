@@ -13,6 +13,7 @@ const data = {
       title: 'Harry Potter',
       first_publish_year: 2008,
       edition_count: 39,
+      key: 'dsfadfa'
     },
     {
       cover_i: 12345,
@@ -20,6 +21,7 @@ const data = {
       title: 'Oliver Twist',
       first_publish_year: 1982,
       edition_count: 345,
+      key: 'dsfadfa'
     },
   ],
 };
@@ -35,7 +37,9 @@ const fetchBooks = async (url: string) => {
         first_publish_year: item.first_publish_year,
         edition_count: item.edition_count - 10,
         ratings_average: item.ratings_average,
+        key: item.key
       });
+
     });
     return { works };
   } catch (e) {
