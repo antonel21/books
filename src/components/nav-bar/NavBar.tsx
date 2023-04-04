@@ -4,16 +4,25 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Search from '../search/Search';
 import Logo from '../logo/Logo';
 import NavLinks from '../links/NavLinks';
 import './NavBar.scss';
+import BasicModal from '../modal/BasicModal';
+import Button from '@mui/material/Button';
+import { RootState } from '../..';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { removeUserData } from '../../store/actions/bookActions';
 
-class NavBar extends Component {
+interface NavBarProps {
+  user: {};
+  removeUserData: () => void;
+}
+
+class NavBar extends Component<NavBarProps> {
   render() {
     return (
       <Box sx={{ flexGrow: 1 }}>
@@ -34,21 +43,21 @@ class NavBar extends Component {
                   <FavoriteBorderOutlinedIcon style={{ color: 'black' }} />
                 </Badge>
               </IconButton>
-              <IconButton
-                size="large"
-                edge="end"
-                onClick={() => {}}
-                color="inherit"
-              >
-                <PermIdentityOutlinedIcon
-                  style={{ fontSize: '30px', color: 'black' }}
-                />
-              </IconButton>
-            </Box>
-            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-              <IconButton size="large" onClick={() => {}} color="inherit">
-                <MoreIcon />
-              </IconButton>
+              {this.props.user ? (
+                <Button
+                  sx={{ mt: '4px' }}
+                  size="large"
+                  color="error"
+                  onClick={() => {
+                    this.props.removeUserData();
+                    localStorage.clear();
+                  }}
+                >
+                  LOGOUT
+                </Button>
+              ) : (
+                <BasicModal />
+              )}
             </Box>
           </Toolbar>
         </AppBar>
@@ -57,4 +66,16 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+const mapStateToProps = (state: RootState) => {
+  return {
+    user: state.auth.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    removeUserData: () => dispatch(removeUserData()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

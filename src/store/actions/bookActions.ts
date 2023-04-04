@@ -5,9 +5,12 @@ import {
   SET_PAGE_NUMBER_TRENDING,
   SET_SEARCHED_BOOKS,
   SET_PAGE_NUMBER_SEARCHING,
-  SET_RANDOM_BOOK
+  SET_RANDOM_BOOK,
+  SET_USER_DATA,
+  REMOVE_USER_DATA,
 } from '../../constants/actionTypes';
 import { iBook } from '../../utils/iBook';
+import { iUser } from '../../utils/iUser';
 
 //action to save the trending books in state
 export const setTrendingBooks = (books: iBook[]) => {
@@ -32,9 +35,16 @@ export const setPageNumberSearching = (pageNumber: number) => {
 
 export const setSearchValue = (search: string) => {
   return { type: SET_SEARCH_VALUE, payload: search };
-
 };
 
 export const setRandomBook = (book: iBook) => {
   return { type: SET_RANDOM_BOOK, payload: book };
+};
+
+export const setUserData = (data: iUser) => {
+  return { type: SET_USER_DATA, payload: data };
+};
+
+export const removeUserData = () => {
+  return { type: REMOVE_USER_DATA };
 };

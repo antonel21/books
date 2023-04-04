@@ -10,12 +10,23 @@ import SearchResults from './views/SearchResults';
 import { connect } from 'react-redux';
 import { RootState } from '.';
 import ProductDetail from './views/ProductDetail';
+import { iUser } from './utils/iUser';
+import { setUserData } from './store/actions/bookActions';
+import { Dispatch } from 'redux';
 
 interface AppProps {
   search: string;
+  setUserData: (userData: iUser) => void;
 }
 
 class App extends Component<AppProps> {
+  componentDidMount(): void {
+    const isUserLogged = JSON.parse(
+      localStorage.getItem('books.user-data') as string,
+    ) as iUser;
+    if (isUserLogged) this.props.setUserData(isUserLogged);
+  }
+
   render() {
     return (
       <div className="App">
@@ -80,4 +91,10 @@ const mapStateToProps = (state: RootState) => {
   return { search: state.searchReducer.search };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    setUserData: (userData: iUser) => dispatch(setUserData(userData)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

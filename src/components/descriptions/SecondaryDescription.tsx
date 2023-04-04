@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { iBook } from '../../utils/iBook';
 import Caption from '../caption/Caption';
 import './SecondaryDescription.scss';
-import Rating from '@mui/material/Rating/Rating';
+import Rating from '@mui/material/Rating/';
 
 interface SecondaryDescriptionProps {
   class: string;

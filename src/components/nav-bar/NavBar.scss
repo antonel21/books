@@ -7,3 +7,18 @@
   align-items: center;
   font-size: 10px;
 }
+
+.logout-btn {
+  background: none;
+  font-size: 15px;
+  padding: 0px 7px;
+  height: 4.5vh;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  color: rgb(182, 0, 0);
+  transition: all 0.7s;
+  &:hover {
+    background-color: rgba(255, 0, 0, 0.045);
+  }
+}

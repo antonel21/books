@@ -16,7 +16,7 @@ import Loading from '../components/loading/Loading';
 import { iBook } from '../utils/iBook';
 import { RootState } from '..';
 
-interface SearchResultsProps {
+export interface SearchResultsProps {
   pageNumberSearching: number;
   search: string;
   searchedBooks: iBook[];
