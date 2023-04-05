@@ -39,7 +39,7 @@ export class Search extends Component<SearchProps> {
 
 const mapStateToProps = (state: RootState) => {
   return {
-    search: state.trendigReducer.search,
+    search: state.searchReducer.search,
   };
 };
 

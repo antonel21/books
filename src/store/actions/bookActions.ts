@@ -8,11 +8,14 @@ import {
   SET_RANDOM_BOOK,
   SET_USER_DATA,
   REMOVE_USER_DATA,
+  SET_TO_CART,
+  SET_TO_FAVORITE,
+  REMOVE_FROM_FAVOURITES,
+  REMOVE_FROM_CART,
 } from '../../constants/actionTypes';
 import { iBook } from '../../utils/iBook';
 import { iUser } from '../../utils/iUser';
 
-//action to save the trending books in state
 export const setTrendingBooks = (books: iBook[]) => {
   return { type: SET_TRENDING_BOOKS, payload: books };
 };
@@ -47,4 +50,20 @@ export const setUserData = (data: iUser) => {
 
 export const removeUserData = () => {
   return { type: REMOVE_USER_DATA };
+};
+
+export const setToCart = (data: string) => {
+  return { type: SET_TO_CART, payload: data };
+};
+
+export const setToFavorite = (data: string) => {
+  return { type: SET_TO_FAVORITE, payload: data };
+};
+
+export const removeFromCart = (book: string) => {
+  return { type: REMOVE_FROM_CART, payload: book };
+};
+
+export const removeFromFavorites = (book: string) => {
+  return { type: REMOVE_FROM_FAVOURITES, payload: book };
 };

@@ -11,7 +11,7 @@ import service from '../services/Service';
 interface RandomBookProps {
   setRandomBook: (book: iBook) => void;
   setIsLoading: (payload: boolean) => void;
-  randomBook: any
+  randomBook: any;
   isLoading: boolean;
 }
 
@@ -21,17 +21,15 @@ export class RandomBook extends Component<RandomBookProps> {
     service.fetchRandomBook(this.props);
   }
   render() {
-    console.log(this.props.randomBook);
-    
     return (
       <>
-      {this.props.isLoading ? (
-        <Loading />
-      ) : (
-      <div className="results-container2">
-        <SingleCard book={this.props.randomBook} class="card-container2" />
-      </div>
-      )}
+        {this.props.isLoading ? (
+          <Loading />
+        ) : (
+          <div className="results-container2">
+            <SingleCard book={this.props.randomBook} class="card-container2" />
+          </div>
+        )}
       </>
     );
   }

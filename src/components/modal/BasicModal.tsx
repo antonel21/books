@@ -23,7 +23,7 @@ export default function BasicModal() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div style={{ marginTop: '4px' }}>
+    <div style={{ marginTop: '4px', marginLeft: '6px' }}>
       <Button size="large" color="primary" onClick={handleOpen}>
         LOGIN
       </Button>

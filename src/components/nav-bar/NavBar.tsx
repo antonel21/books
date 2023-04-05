@@ -16,9 +16,10 @@ import { RootState } from '../..';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { removeUserData } from '../../store/actions/bookActions';
+import { iUser } from '../../utils/iUser';
 
 interface NavBarProps {
-  user: {};
+  user: iUser;
   removeUserData: () => void;
 }
 
@@ -34,12 +35,24 @@ class NavBar extends Component<NavBarProps> {
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <IconButton size="large" color="inherit">
-                <Badge badgeContent={3} color="info">
+                <Badge
+                  badgeContent={
+                    this.props.user?.cart ? this.props.user?.cart?.length : 0
+                  }
+                  color="info"
+                >
                   <ShoppingCartOutlinedIcon style={{ color: 'black' }} />
                 </Badge>
               </IconButton>
               <IconButton size="large" color="inherit">
-                <Badge badgeContent={5} color="info">
+                <Badge
+                  badgeContent={
+                    this.props.user?.favorites
+                      ? this.props.user?.favorites?.length
+                      : 0
+                  }
+                  color="info"
+                >
                   <FavoriteBorderOutlinedIcon style={{ color: 'black' }} />
                 </Badge>
               </IconButton>
@@ -68,7 +81,7 @@ class NavBar extends Component<NavBarProps> {
 
 const mapStateToProps = (state: RootState) => {
   return {
-    user: state.auth.user,
+    user: state.auth?.user,
   };
 };
 
