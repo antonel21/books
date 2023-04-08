@@ -38,7 +38,7 @@ export class RandomBook extends Component<RandomBookProps> {
 const mapStateToProps = (state: RootState) => {
   return {
     randomBook: state.singleBook.randomBook,
-    isLoading: state.trendigReducer.isLoading,
+    isLoading: state.singleBook.isLoading,
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => {

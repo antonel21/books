@@ -14,8 +14,6 @@ interface SearchProps {
 
 export class Search extends Component<SearchProps> {
   render() {
-    console.log(this.props.search);
-
     return (
       <SearchInput
         style={{

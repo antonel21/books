@@ -53,24 +53,12 @@ class Service {
 
   async fetchRandomBook(props: RandomBookProps) {
     try {
-      const books: iBook[] = [];
       const { data } = await booksApi.get(`/trending/yearly.json?limit=280`);
-      data.works.map((book: iBook) => {
-        return books.push({
-          author_name: book.author_name,
-          cover_i: book.cover_i,
-          edition_count: book.edition_count,
-          first_publish_year: book.first_publish_year,
-          title: book.title,
-          ratings_average: book.ratings_average,
-          key: book.key,
-        });
-      });
-      const shuffledBooks = books
-        .map((book) => book)
+      const shuffledBooks = data.works
+        .map((book: any) => book)
         .sort(() => Math.random() - 0.5);
       const randomBook = await booksApi.get(`${shuffledBooks[0].key}.json`);
-      props.setRandomBook(randomBook.data)
+      props.setRandomBook(randomBook.data);
       props.setIsLoading(false);
     } catch (error) {
       console.log(error);
